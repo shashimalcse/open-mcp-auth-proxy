@@ -10,6 +10,7 @@ timeout_seconds: 10
 paths:
   sse: "/sse" # SSE endpoint path
   messages: "/messages/" # Messages endpoint path
+  streamable_http: /mcp
 
 # Transport mode configuration
 transport_mode: "stdio" # Options: "sse" or "stdio"
