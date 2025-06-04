@@ -274,8 +274,8 @@ func buildAsgardeoPayload(regReq RegisterRequest) map[string]interface{} {
 	appName += "-" + randomString(5)
 
 	// Build redirect URIs regex from list of redirect URIs : regexp=(https://app.example.com/callback1|https://app.example.com/callback2)
-	redirectURI := "regexp=(" + strings.Join(regReq.RedirectURIs, "|") + ")"
-	redirectURIs := []string{redirectURI}
+	// redirectURI := "regexp=(" + strings.Join(regReq.RedirectURIs, "|") + ")"
+	// redirectURIs := []string{redirectURI}
 
 	// Filter unsupported grant types
 	var grantTypes []string
@@ -293,7 +293,7 @@ func buildAsgardeoPayload(regReq RegisterRequest) map[string]interface{} {
 				"clientId":       regReq.ClientID,
 				"clientSecret":   regReq.ClientSecret,
 				"grantTypes":     grantTypes,
-				"callbackURLs":   redirectURIs,
+				"callbackURLs":   regReq.RedirectURIs,
 				"allowedOrigins": []string{},
 				"publicClient":   true,
 				"pkce": map[string]bool{
