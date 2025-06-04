@@ -88,6 +88,7 @@ type DefaultConfig struct {
 type Config struct {
 	AuthServerBaseURL string
 	ListenPort        int    `yaml:"listen_port"`
+	ServerBaseURL     string `yaml:"server_base_url"` // Base URL for the server
 	BaseURL           string `yaml:"base_url"`
 	Port              int    `yaml:"port"`
 	JWKSURL           string
