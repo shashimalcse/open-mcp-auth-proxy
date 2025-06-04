@@ -55,6 +55,9 @@ func (p *asgardeoProvider) WellKnownHandler() http.HandlerFunc {
 		}
 
 		baseURL := scheme + "://" + host
+		if p.cfg.ServerBaseURL != "" {
+			baseURL = p.cfg.ServerBaseURL
+		}
 
 		issuer := strings.TrimSuffix(p.cfg.AuthServerBaseURL, "/") + "/token"
 
