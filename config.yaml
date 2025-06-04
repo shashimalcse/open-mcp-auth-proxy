@@ -2,24 +2,23 @@
 
 # Common configuration for all transport modes
 listen_port: 8080
-base_url: "http://localhost:3001" # Base URL for the MCP server
-port: 3001 # Port for the MCP server
+base_url: "http://localhost:8000" 
+port: 8000 # Port for the MCP server
 timeout_seconds: 10
 
 # Path configuration
 paths:
   sse: "/sse" # SSE endpoint path
   messages: "/messages/" # Messages endpoint path
-  streamable_http: "/mcp" # MCP endpoint path
 
 # Transport mode configuration
-transport_mode: "sse" # Options: "sse" or "stdio"
+transport_mode: "stdio" # Options: "sse" or "stdio"
 
 # stdio-specific configuration (used only when transport_mode is "stdio")
 stdio:
   enabled: true
-  user_command: "npx -y @modelcontextprotocol/server-github"
-  work_dir: "" # Working directory (optional)
+  user_command: "npm start"
+  work_dir: "/home/choreouser/ai-gourmet-mcp/mcp-server-typescript" # Working directory (optional)
   # env:                           # Environment variables (optional)
   #   - "NODE_ENV=development"
 
@@ -29,20 +28,89 @@ path_mapping:
 # CORS configuration
 cors:
   allowed_origins:
+    - "http://localhost:5173"
+    - "https://4def1ad2-b3ca-4bd5-a53d-d4e760f003c4.e1-us-east-azure.choreoapps.dev/sse"
+    - "https://4def1ad2-b3ca-4bd5-a53d-d4e760f003c4.e1-us-east-azure.choreoapps.dev"
+    - "http://192.168.1.11:5173"
+    - "http://192.168.1.11:6277"
     - "http://127.0.0.1:6274"
+    - "*"  # Allow all origins temporarily for debugging
   allowed_methods:
     - "GET"
     - "POST"
     - "PUT"
     - "DELETE"
+    - "OPTIONS"  # Important for CORS preflight requests
   allowed_headers:
     - "Authorization"
     - "Content-Type"
     - "mcp-protocol-version"
+    - "Origin"
+    - "Accept"
+    - "X-Requested-With"
+    - "Referer"
+    - "User-Agent"
+  exposed_headers:
+    - "Content-Length"
+    - "Content-Type"
+    - "mcp-protocol-version"
   allow_credentials: true
+  max_age: 86400  # Cache preflight requests for 24 hours
 
 # Demo configuration for Asgardeo
 demo:
   org_name: "openmcpauthdemo"
   client_id: "N0U9e_NNGr9mP_0fPnPfPI0a6twa"
   client_secret: "qFHfiBp5gNGAO9zV4YPnDofBzzfInatfUbHyPZvM0jka"
+
+
+
+
+
+# # config.yaml
+
+# # Common configuration for all transport modes
+# listen_port: 8080
+# base_url: "http://localhost:8000" # Base URL for the MCP server
+# port: 8000 # Port for the MCP server
+# timeout_seconds: 10
+
+# # Path configuration
+# paths:
+#   sse: "/sse" # SSE endpoint path
+#   messages: "/messages/" # Messages endpoint path
+
+# # Transport mode configuration
+# transport_mode: "sse" # Options: "sse" or "stdio"
+
+# # stdio-specific configuration (used only when transport_mode is "stdio")
+# stdio:
+#   enabled: true
+#   user_command: "npx -y @modelcontextprotocol/server-github"
+#   work_dir: "" # Working directory (optional)
+#   # env:                           # Environment variables (optional)
+#   #   - "NODE_ENV=development"
+
+# # Path mapping (optional)
+# path_mapping:
+
+# # CORS configuration
+# cors:
+#   allowed_origins:
+#     - "http://localhost:5173"
+#   allowed_methods:
+#     - "GET"
+#     - "POST"
+#     - "PUT"
+#     - "DELETE"
+#   allowed_headers:
+#     - "Authorization"
+#     - "Content-Type"
+#     - "mcp-protocol-version"
+#   allow_credentials: true
+
+# # Demo configuration for Asgardeo
+# demo:
+#   org_name: "openmcpauthdemo"
+#   client_id: "N0U9e_NNGr9mP_0fPnPfPI0a6twa"
+#   client_secret: "qFHfiBp5gNGAO9zV4YPnDofBzzfInatfUbHyPZvM0jka"
