@@ -2,7 +2,7 @@
 
 # Common configuration for all transport modes
 listen_port: 8080
-server_base_url: "https://c7ecde5c-6024-4f73-9e1f-07616384c5a4.e1-us-east-azure.choreoapps.dev" # Base URL for the MCP server
+server_base_url: "" # Base URL for the MCP server
 base_url: "http://localhost:8000" 
 port: 8000 # Port for the MCP server
 timeout_seconds: 10
@@ -19,8 +19,8 @@ transport_mode: "stdio" # Options: "sse" or "stdio"
 # stdio-specific configuration (used only when transport_mode is "stdio")
 stdio:
   enabled: true
-  user_command: "npm start"
-  work_dir: "/home/choreouser/ai-gourmet-mcp/mcp-server-typescript" # Working directory (optional)
+  user_command: "npx -y @modelcontextprotocol/server-everything"
+  # work_dir: "/home/choreouser/ai-gourmet-mcp/mcp-server-typescript" # Working directory (optional)
   # env:                           # Environment variables (optional)
   #   - "NODE_ENV=development"
 
